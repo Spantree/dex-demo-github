@@ -14,10 +14,16 @@
 * Create the minikube cluster replacing the path `otaegui` with your username (minikube mounts the directory /Users into /Users inside its VM by default).
 
 ```bash
-minikube start --vm-driver=virtualbox --memory=4096 --extra-config=apiserver.Authorization.Mode=RBAC --network-plugin=cni --extra-config=apiserver.Authentication.OIDC.IssuerURL=https://dex.example.com:32000 --extra-config=apiserver.Authentication.OIDC.UsernameClaim=email --extra-config=apiserver.Authentication.OIDC.CAFile=/Users/otaegui/dex-demo/ssl/ca.pem --extra-config=apiserver.Authentication.OIDC.ClientID=example-app --extra-config=apiserver.Authentication.OIDC.GroupsClaim=groups
+minikube start --vm-driver=virtualbox --memory=4096 --extra-config=apiserver.authorization-mode=RBAC --network-plugin=cni --extra-config=apiserver.oidc-issuer-url=https://dex.example.com:32000 --extra-config=apiserver.oidc-username-claim=email --extra-config=apiserver.oidc-ca-file=/var/lib/localkube/certs/dex/ca.pem --extra-config=apiserver.oidc-client-id=example-app --extra-config=apiserver.oidc-groups-claim=groups
 ```
 
-The option `--extra-config=apiserver.Authentication.OIDC.ClientID=example-app` will match the default value (`example-app`) of the example app that comes with dex.
+You will have to mount the directory containing the generated certs into /var/lib/localkube/certs (inside minikube)
+
+```bash
+minikube mount "$(pwd)/ssl:/var/lib/localkube/certs/dex"
+```
+
+The option `--extra-config=apiserver.apiserver.oidc-client-id=example-app` will match the default value (`example-app`) of the example app that comes with dex.
 
 * Add `dex.example.com` to `/etc/hosts`: `echo $(minikube ip) dex.example.com | sudo tee -a /etc/hosts`
 * Fix kube-dns RBAC permissions: `kubectl apply -f auth-kubedns.yaml`
