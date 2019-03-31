@@ -52,11 +52,17 @@ The option `--extra-config=apiserver.apiserver.oidc-client-id=example-app` will 
 * `cd $GOPATH/src/github.com/coreos/dex/`
 * `./bin/example-app --issuer=https://dex.example.com:32000 --issuer-root-ca=/Users/otaegui/dex-demo/ssl/ca.pem`
 * Hit `http://127.0.0.1:5555` in your web browser
+
 * Click on login
+
 ![image](https://user-images.githubusercontent.com/91633/55295640-d18ff700-53e5-11e9-982b-1a57e351362d.png)
+
 * Click on Grant
+
 ![image](https://user-images.githubusercontent.com/91633/55295700-8d512680-53e6-11e9-9b12-082e68d80402.png)
+
 * Copy the ID Token somewhere (that is your token for access)
+
 ![image](https://user-images.githubusercontent.com/91633/55295715-b8d41100-53e6-11e9-8df4-173313095136.png)
 
 ## Configure and test `kubectl`
