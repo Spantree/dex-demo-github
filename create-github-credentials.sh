@@ -2,4 +2,7 @@
 
 set -euo pipefail
 
-kubectl create secret generic dex-dev-github --from-literal=client-id="$1" --from-literal=client-secret="$2"
+CLIENT_ID=$1
+CLIENT_SECRET=$2
+
+kubectl create secret generic github-client --from-literal=client-id="$CLIENT_ID" --from-literal=client-secret="$CLIENT_SECRET"
