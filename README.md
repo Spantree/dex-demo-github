@@ -4,8 +4,7 @@
 
 * Clone the tutorial repo `git clone <repourl> ~/dex-demo`
 * Run `go get -v github.com/dexidp/dex` and `cd $GOPATH/src/github.com/dexidp/dex/` and `make`.
-* Minikube 0.33.1 installed on your workstation or machine that you are using
-  for this demo
+* Minikube 0.33.1 or 1.0.0 installed on your workstation or machine that you are using for this demo
 * Create a new OAuth app setting in github `https://github.com/organizations/[YOURORG]/settings/applications` and save the client id and the client secret for later use.
 
 It should look like this:
