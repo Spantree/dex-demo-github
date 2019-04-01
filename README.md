@@ -39,10 +39,10 @@ minikube start --vm-driver=virtualbox --memory=4096 \
 
 The option `--extra-config=apiserver.apiserver.oidc-client-id=example-app` will match the default value (`example-app`) of the example app that comes with dex.
 
-* Add `dex.example.com` to `/etc/hosts`: `echo $(minikube ip) dex.example.com | sudo tee -a /etc/hosts`
+* Add `dex.example.com` to `/etc/hosts`: `sudo -v && echo $(minikube ip) dex.example.com | sudo tee -a /etc/hosts`
 * Add the TLS certs to kubernetes `./create-dex-tls.sh`
 * Add the github clientid and clientsecret `create-github-credentials.sh <clientid> <clientsecret>`
-* Edit the file `/etc/hosts` of the minikube host by using `sudo -v && minikube ssh -- "echo '127.0.2.1 dex.example.com' | sudo tee -a /etc/hosts"`.
+* Edit the file `/etc/hosts` of the minikube host by using `minikube ssh -- "echo '127.0.2.1 dex.example.com' | sudo tee -a /etc/hosts"`.
 * Install and configure Dex `kubectl apply -f dex.yaml`
 * Verify dex is running by doing `kubectl logs deploy/dex -f`
 * Create cluster role binding for your user `kubectl create clusterrolebinding github-feniix --clusterrole=cluster-admin --user=feniix@gmail.com`
